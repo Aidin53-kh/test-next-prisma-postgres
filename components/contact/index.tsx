@@ -34,7 +34,10 @@ export const Contact: React.FC<ContactProps> = ({ contact }) => {
                 </p>
                 <p
                     className="text-red-400 cursor-pointer hover:underline"
-                    onClick={() => handleDeleteContact(contact.id)}
+                    onClick={() => {
+                        setSelectedContact(undefined);
+                        handleDeleteContact(contact.id);
+                    }}
                 >
                     Delete
                 </p>
