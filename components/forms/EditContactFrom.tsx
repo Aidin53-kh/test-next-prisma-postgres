@@ -1,6 +1,5 @@
 import { Contact } from "@prisma/client";
 import { ErrorMessage, Form, Formik } from "formik";
-import { useEffect, useState } from "react";
 import { useAppContext } from "../../providers/AppProvider";
 import { editContactSchema } from "../../schema/contact";
 import { Button } from "../button";
@@ -8,16 +7,17 @@ import { TextFiled } from "../textfiled";
 
 export const EditContactForm: React.FC = () => {
     const { handleEditContact, selectedContact } = useAppContext();
+    const { firstName, lastName, email, avatar } = selectedContact as Contact;
 
     if (!selectedContact) return null;
 
     return (
         <Formik
             initialValues={{
-                lastName: selectedContact.lastName,
-                firstName: selectedContact.firstName,
-                email: selectedContact.email,
-                avatar: selectedContact.avatar,
+                lastName,
+                firstName,
+                email,
+                avatar,
             }}
             onSubmit={(contact) =>
                 handleEditContact(contact, selectedContact.id)

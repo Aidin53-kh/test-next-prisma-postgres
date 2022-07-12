@@ -15,7 +15,9 @@ export default async function handler(
         });
 
         res.status(200).json(deletedContact);
-    } else if (req.method === "PATCH") {
+    }
+    
+    else if (req.method === "PATCH") {
         const contactData = JSON.parse(req.body);
         const editedContact = await db.contact.update({
             where: {

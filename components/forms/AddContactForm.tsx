@@ -19,14 +19,8 @@ export const AddContactForm: React.FC = () => {
             validationSchema={createContactSchema}
         >
             <Form>
-                <p className="mb-1 ml-1 text-gray-600 text-sm">
-                    first name
-                </p>
-                <TextFiled
-                    name="firstName"
-                    placeholder="first name"
-
-                />
+                <p className="mb-1 ml-1 text-gray-600 text-sm">first name</p>
+                <TextFiled name="firstName" placeholder="first name" />
                 <ErrorMessage
                     name="firstName"
                     render={(message) => (
@@ -34,14 +28,8 @@ export const AddContactForm: React.FC = () => {
                     )}
                 />
 
-                <p className="mb-1 ml-1 text-gray-600 mt-6 text-sm">
-                    last name
-                </p>
-                <TextFiled
-                    name="lastName"
-                    placeholder="last name"
-
-                />
+                <p className="mb-1 ml-1 mt-6 text-gray-600 text-sm">last name</p>
+                <TextFiled name="lastName" placeholder="last name" />
                 <ErrorMessage
                     name="lastName"
                     render={(message) => (
@@ -49,13 +37,8 @@ export const AddContactForm: React.FC = () => {
                     )}
                 />
 
-                <p className="mb-1 ml-1 text-gray-600 mt-6 text-sm">
-                    email
-                </p>
-                <TextFiled
-                    name="email"
-                    placeholder="email"
-                />
+                <p className="mb-1 ml-1 mt-6 text-gray-600 text-sm">email</p>
+                <TextFiled name="email" placeholder="email" />
                 <ErrorMessage
                     name="email"
                     render={(message) => (
@@ -63,19 +46,15 @@ export const AddContactForm: React.FC = () => {
                     )}
                 />
 
-                <p className="mb-1 ml-1 text-gray-600 mt-6 text-sm">
-                    avatar
-                </p>
-                <TextFiled
-                    name="avatar"
-                    placeholder="avatar"
-                />
+                <p className="mb-1 ml-1 mt-6 text-gray-600 text-sm">avatar</p>
+                <TextFiled name="avatar" placeholder="avatar" />
                 <ErrorMessage
                     name="avatar"
                     render={(message) => (
                         <p className="text-sm text-red-500">{message}</p>
                     )}
                 />
+
                 <div className="flex justify-end mt-10">
                     <Button type="submit">Create</Button>
                 </div>

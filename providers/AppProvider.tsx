@@ -1,41 +1,15 @@
+import React, { createContext, useContext, useState } from "react";
 import { Contact, Prisma } from "@prisma/client";
-import React, {
-    createContext,
-    Dispatch,
-    SetStateAction,
-    useContext,
-    useState,
-} from "react";
 import { createContact, deleteContact, editContact } from "../lib/contacts";
+import { AppContextProps, APP_CONTEXT_DEFUALTS } from "./types";
 
-type AppContextProps = {
-    contacts: Contact[];
-    setContacts: Dispatch<SetStateAction<Contact[]>>;
-    handleCreateContact: (contact: Prisma.ContactCreateInput) => void;
-    handleDeleteContact: (contactId: string) => void;
-    handleEditContact: (
-        contact: Prisma.ContactUpdateInput,
-        contactId: string
-    ) => void;
-    selectedContact: Contact | undefined;
-    setSelectedContact: Dispatch<SetStateAction<Contact | undefined>>;
-};
-
-const appContext = createContext<AppContextProps>({
-    contacts: [],
-    setContacts: () => {},
-    handleCreateContact: () => {},
-    handleDeleteContact: () => {},
-    selectedContact: undefined,
-    setSelectedContact: () => {},
-    handleEditContact: () => {},
-});
+const appContext = createContext<AppContextProps>(APP_CONTEXT_DEFUALTS);
 
 type AppProviderPorps = {
     children: React.ReactNode;
 };
 
-export const AppProvider: React.FC<AppProviderPorps> = ({ children }) => {
+export const AppProvider = ({ children }: AppProviderPorps) => {
     const [contacts, setContacts] = useState<Contact[]>([]);
     const [selectedContact, setSelectedContact] = useState<Contact>();
 
@@ -68,9 +42,11 @@ export const AppProvider: React.FC<AppProviderPorps> = ({ children }) => {
             const editedContact = await editContact(contact, contactId);
             const newContactList = [...contacts];
 
-            const contactIndex = contacts.findIndex(contact => contact.id === editedContact.id);
+            const contactIndex = contacts.findIndex(
+                (contact) => contact.id === editedContact.id
+            );
             newContactList[contactIndex] = editedContact;
-            
+
             setContacts(newContactList);
         } catch (error) {
             console.log(error);
@@ -86,7 +62,7 @@ export const AppProvider: React.FC<AppProviderPorps> = ({ children }) => {
                 handleDeleteContact,
                 selectedContact,
                 setSelectedContact,
-                handleEditContact
+                handleEditContact,
             }}
         >
             {children}

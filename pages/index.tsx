@@ -7,7 +7,7 @@ import { useAppContext } from "../providers/AppProvider";
 
 const db = new PrismaClient();
 
-interface HomeProps {
+type HomeProps = {
     contacts: IContact[];
 }
 
